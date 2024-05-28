@@ -1,0 +1,29 @@
+<div class="main">
+    <div class="container">
+        <img src="../../assets/monk.avif" alt="" style="height: 100%; border-radius: 20px 0 0 20px;">
+        <div class="login">
+            <h1>Welcome.</h1>
+            <div style=" height: 4px; border-radius: 20px; background-color: orange; width: 200px; margin-bottom: 30px;"></div>
+
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="adr">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="pass">
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div style="margin: 15px 0px;"></div>
+            <button type="button" class="btn btn-outline-primary" routerLink="/home">Login</button>
+            <div style="margin: 15px 0px;"></div>
+            <div style="display: flex;flex-direction: column;">
+                <a routerLink="/resetpass">Reset Password ?</a> <!-- NOT Working !!!-->
+                <a routerLink="/signup">New Here ?</a>    
+            </div>
+
+            <div style="width: 100%;display: flex; justify-content: center; align-items: center;">
+                <p style="color: red;">{{state}}</p>
+            </div>
+        </div>
+    </div>
+</div>

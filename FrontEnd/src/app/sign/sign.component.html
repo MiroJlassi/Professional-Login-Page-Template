@@ -1,0 +1,87 @@
+<div class="main">
+    <div class="container">
+        <img src="../../assets/monk.avif" alt="" style="height: 100%; border-radius: 20px 0 0 20px;">
+        <div class="login">
+            <h1>Welcome.</h1>
+            <div style=" height: 4px; border-radius: 20px; background-color: orange; width: 200px; margin-bottom: 30px;"></div>
+
+            <div style="display: flex;justify-content: space-between; ">
+                <div class="form-floating mb-3" style="width: 49%;">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="First Name"
+                        [(ngModel)]="nom">
+                    <label for="floatingInput">First Name</label>
+                </div>
+                <div class="form-floating mb-3" style="width: 49%;">
+                    <input type="text" class="form-control" id="floatingInput" placeholder="Last Name"
+                        [(ngModel)]="prenom">
+                    <label for="floatingInput">Last Name</label>
+                </div>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
+                    [(ngModel)]="email">
+                <label for="floatingInput">Email address</label>
+            </div>
+
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                    [(ngModel)]="pass1" (input)="ValidPass(pass1)">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <div style="margin: 15px 0px;"></div>
+
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                    [(ngModel)]="pass2">
+                <label for="floatingPassword">Confirm Password</label>
+            </div>
+
+            <div style="margin: 15px 0px;"></div>
+
+            <div [ngSwitch]="strength">
+                <div *ngSwitchCase="1">
+                    <div
+                        style="height: 5px; width: 100%; background-color: rgba(255, 0, 0, 0.508); border-radius: 20px;">
+                    </div>
+                </div>
+                <div *ngSwitchCase="2">
+                    <div style="height: 5px; width: 100%; background-color: orangered; border-radius: 20px;"></div>
+                </div>
+                <div *ngSwitchCase="3">
+                    <div
+                        style="height: 5px; width: 100%; background-color: rgba(255, 166, 0, 0.495); border-radius: 20px;">
+                    </div>
+                </div>
+                <div *ngSwitchCase="4">
+                    <div
+                        style="height: 5px; width: 100%; background-color: rgba(255, 255, 0,0.5); border-radius: 20px;">
+                    </div>
+                </div>
+                <div *ngSwitchCase="5">
+                    <div
+                        style="height: 5px; width: 100%; background-color: rgba(153, 205, 50, 0.5); border-radius: 20px;">
+                    </div>
+                </div>
+                <div *ngSwitchDefault>
+                    <div
+                        style="height: 5px; width: 100%; background-color: rgba(128, 128, 128, 0.1); border-radius: 20px;">
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin: 15px 0px;"></div>
+
+            <button type="button" class="btn btn-outline-primary" (click)="CreateUser()">Sign Up</button>
+
+            <div style="margin: 10px 0px;"></div>
+
+            <a routerLink="/login">Already have an account.</a>
+
+            <div style="width: 100%;display: flex; justify-content: center; align-items: center;">
+                <p style="color: red;">{{state}}</p>
+            </div>
+        </div>
+    </div>
+</div>
