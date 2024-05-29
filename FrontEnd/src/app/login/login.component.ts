@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Con2backService } from '../con2back.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -6,12 +8,30 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  adr = "";
-  pass = "";
+  user = {
+    Email:"",
+    Password:""
+  }
   state = ""
+  token : any;
 
+  constructor( private _back: Con2backService, private router: Router){}
 
   login(){
-    // check if inputs match a correspanding user or not and authentification navigate to home
+    if(this.user.Email && this.user.Password ){
+      this._back.Login(this.user).subscribe(
+        res=>{
+          this.token = res;
+          localStorage.setItem('token', this.token.mytoken);
+          this.router.navigate(["/home"]);
+        },
+        err=>{
+          this.state = "Invalid Inputs: Incorrect Email or Password..";
+        }
+      );
+    }else{
+      this.state = "Please fill in both fields.."
+    }
+
   }
 }

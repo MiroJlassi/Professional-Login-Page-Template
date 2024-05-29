@@ -15,35 +15,42 @@ const GetUsers = async (req, res) => {
 const AddUser = async (req, res) => {
     try {
         const data = req.body;
-        const NewUser = new User(data);
 
-        // Password hashing
+        const existingUserByEmail = await User.findOne({ Email: data.Email });
+        if (existingUserByEmail) {
+            return res.status(400).json("ERROR: Email already exists");
+        }
+
+        // Password hashing (crypting)
         const salt = bcrypt.genSaltSync(10);
         const cryptedpass = await bcrypt.hashSync(data.Password, salt);
-        NewUser.Password = cryptedpass;
+        data.Password = cryptedpass;
+        // ------------------------------ //
 
+        const NewUser = new User(data);
         const savedUser = await NewUser.save();
         res.send(savedUser);
     } catch (err) {
         console.log(err);
-        res.status(400).json("ERROR: Cannot Add");
+        res.status(500).json("ERROR: Cannot Add");
     }
 };
+
 
 const Login = async (req, res) => {
     try {
         const data = req.body; // data = { email, Password }
-        //console.log("Login data received:", data);  // Debugging statement
+        //console.log("Login data received:", data);  // Debugging
         const user = await User.findOne({ Email: data.Email });
         //console.log(user);
         if (!user) {
-            //console.log("User not found with email:", data.Email);  // Debugging statement
+            //console.log("User not found with email:", data.Email);  // Debugging
             return res.status(404).send("User not Found..");
         } else {
             // Decrypt password
             const validPass = bcrypt.compareSync(data.Password, user.Password);
             if (!validPass) {
-                //console.log("Invalid password for user:", user.Email);  // Debugging statement
+                //console.log("Invalid password for user:", user.Email);  // Debugging
                 return res.status(401).send("Invalid Inputs..");
             } else {
                 // Authentication
@@ -51,7 +58,7 @@ const Login = async (req, res) => {
                     name: user.Name,
                     email: user.Email
                 };
-                const token = jwt.sign(payload, "MyCoDe.");  // Added const keyword
+                const token = jwt.sign(payload, "MyCoDe."); 
                 return res.status(200).send({ mytoken: token });
             }
         }

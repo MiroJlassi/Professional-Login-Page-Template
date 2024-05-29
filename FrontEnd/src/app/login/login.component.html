@@ -6,18 +6,18 @@
             <div style=" height: 4px; border-radius: 20px; background-color: orange; width: 200px; margin-bottom: 30px;"></div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="adr">
+                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" [(ngModel)]="user.Email">
                 <label for="floatingInput">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="pass">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="user.Password">
                 <label for="floatingPassword">Password</label>
             </div>
             <div style="margin: 15px 0px;"></div>
-            <button type="button" class="btn btn-outline-primary" routerLink="/home">Login</button>
+            <button type="button" class="btn btn-outline-primary" (click)="login()">Login</button>
             <div style="margin: 15px 0px;"></div>
             <div style="display: flex;flex-direction: column;">
-                <a routerLink="/resetpass">Reset Password ?</a> <!-- NOT Working !!!-->
+                <a routerLink="/resetpass">Reset Password ?</a>
                 <a routerLink="/signup">New Here ?</a>    
             </div>
 

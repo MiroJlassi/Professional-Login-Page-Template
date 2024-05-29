@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Con2backService } from '../con2back.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign',
@@ -6,10 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign.component.css']
 })
 export class SignComponent {
-  nom = "";
-  prenom = "";
-  email = "";
-  pass1 = "";
+  constructor( private _back: Con2backService , private router:Router){}
+
+
+  user = {
+    Name : "",
+    LastName : "",
+    Email : "",
+    Password : "",
+  };
+
   pass2 = "";
   strength = 0;
 
@@ -34,19 +42,39 @@ export class SignComponent {
 
     this.strength = strength;
   }
-  
-  
 
-  Validinput(input: string): boolean {
-    return input.trim() !== "";
-  }
 
   state = "";
   CreateUser() {
-    if (this.Validinput(this.nom) && this.Validinput(this.prenom) && this.ValidEmail(this.email) && this.strength == 5 && this.pass1 === this.pass2) {
-      // check if user do not exist in the data base // add // navigate to login page
-    } else {
-      this.state = "Invalid Inputs...";
+    if(this.user.Name && this.user.LastName && this.user.Email && this.user.Password && this.pass2){
+      if(this.ValidEmail(this.user.Email)){
+        if(this.user.Password === this.pass2){
+          if(this.strength >=5){
+            // ALL SET let the show begin! done with fornt it's back time 
+            this._back.Register(this.user).subscribe(
+              res=>{
+                this.router.navigate(["/login"]);
+              },
+              err=>{
+                if(err.status === 400){
+                  this.state = 'Email already exists';
+                }else if(err.status === 500){
+                  this.state = 'Server error, please try again later';
+                }else{
+                  this.state = 'An unexpected error occurred';
+                }
+              }
+            );
+          }else{
+            this.state = "Weak Password. Length should be at least 8 characters,must contain a digit, an alphabet character,an uppercase letter, and a special character.";          }
+        }else{
+          this.state = "Please Confirm Password.."
+        }
+      }else{
+        this.state = "Invalid Email.."
+      }
+    }else{
+      this.state = "Please fill in all fields.."
     }
   }
 }
