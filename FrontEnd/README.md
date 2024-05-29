@@ -29,8 +29,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 -->
 
 <h1>Login Page</h1>
-![Alt text](./GitRes/login.png)
+![Alt text](/login.png)
 
 <h1>Sign Up Page</h1>
-![Alt text](./GitRes/register.png)
+![Alt text](/register.png)
 
