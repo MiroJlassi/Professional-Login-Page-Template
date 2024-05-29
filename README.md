@@ -3,11 +3,11 @@ A Professional Login Page Template featuring a detailed login interface, signup 
 
 ![Alt text](/login.png)
 
-## Installation:
+# Installation:
     Clone or download the repository:
-        git clone https://github.com/yourusername/login-page-template.git
+        git clone https://github.com/MiroJlassi/Professional-Login-Page-Template.git
 
-## Setup:
+# Setup:
     1/ Install Node.js and npm if not already installed.
     2/ Install Angular CLI globally.
         npm install -g @angular/cli
@@ -16,7 +16,7 @@ A Professional Login Page Template featuring a detailed login interface, signup 
 
 
 
-## Features:
+# Features:
     Login Page:
     The login page provides a seamless authentication process:
 
@@ -41,12 +41,12 @@ Examples:
 ![Alt text](/login.png)
 ![Alt text](/FrontEnd/src/assets/register.png)
 
-## FAQ:
+# FAQ:
     Q: Can I customize the look and feel of the login page?
     A: Yes, you can customize the Angular components and styles to match your project's design.
 
     Q: Is the reset password functionality implemented?
     A: Not yet. It's a planned feature for future updates.
 
-## Conclusion:
+# Conclusion:
     The Login Page Template simplifies the login and signup processes for MEAN developers. Feel free to provide feedback or contribute to its development on GitHub.
