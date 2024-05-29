@@ -12,8 +12,13 @@ export class Con2backService {
   Login(user: any){
     return this.http.post(this.url + "login", user);
   }
-
+  
   Register(user: any){
     return this.http.post(this.url + "register", user);
+  }
+
+  CurrentUser = {
+    Name : "",
+    LastName : ""
   }
 }

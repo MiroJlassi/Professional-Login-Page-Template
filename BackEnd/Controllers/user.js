@@ -56,7 +56,7 @@ const Login = async (req, res) => {
                 // Authentication
                 const payload = {
                     name: user.Name,
-                    email: user.Email
+                    LastName: user.LastName
                 };
                 const token = jwt.sign(payload, "MyCoDe."); 
                 return res.status(200).send({ mytoken: token });
