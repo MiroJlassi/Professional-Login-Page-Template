@@ -36,7 +36,6 @@ const AddUser = async (req, res) => {
     }
 };
 
-
 const Login = async (req, res) => {
     try {
         const data = req.body; // data = { email, Password }
